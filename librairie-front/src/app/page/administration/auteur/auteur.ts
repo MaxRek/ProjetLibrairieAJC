@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuteurDto } from '../../dto/auteur-dto';
+import { AuteurDto } from '../../../dto/auteur-dto';
 
-import { AuteurService } from '../../service/auteur-service';
+import { AuteurService } from '../../../service/auteur-service';
 
 @Component({
   selector: 'auteur', 

@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LivreDto } from '../../dto/livre-dto';
-import { LivreService } from '../../service/livre-service';
+import { LivreDto } from '../../../dto/livre-dto';
+import { LivreService } from '../../../service/livre-service';
 
-import { ArticleDto } from '../../dto/article-dto';
-import { ArticleService } from '../../service/article-service';
+import { ArticleDto } from '../../../dto/article-dto';
+import { ArticleService } from '../../../service/article-service';
 
 @Component({
   selector: 'livre',

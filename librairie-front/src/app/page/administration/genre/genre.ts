@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GenreDto } from '../../dto/genre-dto';
+import { GenreDto } from '../../../dto/genre-dto';
 
-import { GenreService } from '../../service/genre-service';
+import { GenreService } from '../../../service/genre-service';
 
 @Component({
   selector: 'genre',

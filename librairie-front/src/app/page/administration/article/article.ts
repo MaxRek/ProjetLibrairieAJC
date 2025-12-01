@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ArticleDto } from '../../dto/article-dto';
+import { ArticleDto } from '../../../dto/article-dto';
 
-import { ArticleService } from '../../service/article-service';
+import { ArticleService } from '../../../service/article-service';
 
 @Component({
   selector: 'article',
