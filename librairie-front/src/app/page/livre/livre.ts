@@ -17,6 +17,8 @@ import { ArticleService } from '../../service/article-service';
 })
 export class Livre implements OnInit {
   protected livre$!: Observable<LivreDto[]>;
+  auteur$!: Observable<any[]>;
+  genre$!: Observable<any[]>;
 
   protected showForm: boolean = false
   protected livreForm!: FormGroup;
