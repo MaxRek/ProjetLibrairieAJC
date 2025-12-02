@@ -34,4 +34,16 @@ public class Common {}
 	
 	public class AuteurWithLivre extends Auteur {}
 	
+	public class Review extends Common {}
+	
+	public class ReviewWithClient extends Review {}
+	
+	public class ReviewWithArticle extends Review {}
+
+	public class Achat extends Common {}
+	
+	public class AchatWithClient extends Achat {}
+	
+	public class AchatWithArticle extends Achat {}
+	
 }
