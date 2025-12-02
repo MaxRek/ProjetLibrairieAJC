@@ -14,7 +14,7 @@ import { ArticleService } from '../../../service/article-service';
   selector: 'papeterie',
   imports: [ CommonModule, ReactiveFormsModule],
   templateUrl: './papeterie.html',
-  styleUrl: './papeterie.css',
+  styleUrl: '../admin.css',
 })
 export class Papeterie {
   protected papeterie$!: Observable<PapeterieDto[]>;

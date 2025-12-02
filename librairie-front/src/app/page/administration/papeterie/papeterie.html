@@ -22,12 +22,57 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                                    <td>Cahier 96 pages</td>
+                                    <td>2.50 €</td>
+                                    <td>45</td>
+                                    <td>Cahier</td>
+                                    <td>Clairefontaine</td>
+                                                        <td>
+                        <button>Modifier</button>
+                        <button>Supprimer</button>
+                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Stylo bille bleu</td>
+                                    <td>1.20 €</td>
+                                    <td>120</td>
+                                    <td>Stylo</td>
+                                    <td>BIC</td>
+                                                        <td>
+                        <button>Modifier</button>
+                        <button>Supprimer</button>
+                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Gomme blanche</td>
+                                    <td>0.80 €</td>
+                                    <td>200</td>
+                                    <td>Gomme</td>
+                                    <td>Maped</td>
+                                                                                            <td>
+                        <button>Modifier</button>
+                        <button>Supprimer</button>
+                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Règle 30cm</td>
+                                    <td>1.50 €</td>
+                                    <td>75</td>
+                                    <td>Règle</td>
+                                    <td>Maped</td>
+                                                        <td>
+                        <button>Modifier</button>
+                        <button>Supprimer</button>
+                    </td>
+                                    
+                                </tr>
                 <tr *ngFor="let papeterie of papeterie$ | async; traclBy: trackPapeterie" >
                     <td>
                         {{ papeterie.libelle }}
                     </td>
                     <td>
-                        {{ papeterie.prix }}
+                        {{ papeterie.prix }} €
                     </td>
                     <td>
                         {{ papeterie.stock }}
