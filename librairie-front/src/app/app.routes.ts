@@ -21,6 +21,8 @@ export const routes: Routes = [
     { path: 'compte', component: Compte },
     { path: 'client', component: Client },
     { path: 'administrateur', component: Administrateur },
-
+    // Redirection par défaut vers la page d'accueil
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '**', redirectTo: '/home' }
 ];
 

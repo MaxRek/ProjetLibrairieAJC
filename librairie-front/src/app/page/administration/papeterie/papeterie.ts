@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RouterModule } from '@angular/router';
+
 import { PapeterieDto } from '../../../dto/papeterie-dto';
 
 import { PapeterieService } from '../../../service/papeterie-service';
@@ -12,7 +14,7 @@ import { ArticleService } from '../../../service/article-service';
 
 @Component({
   selector: 'papeterie',
-  imports: [ CommonModule, ReactiveFormsModule],
+  imports: [ CommonModule, ReactiveFormsModule, RouterModule,RouterModule],
   templateUrl: './papeterie.html',
   styleUrl: '../admin.css',
 })
