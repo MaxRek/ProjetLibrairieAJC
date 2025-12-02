@@ -47,4 +47,6 @@ public class Common {}
 	
 	public class AchatWithArticle extends Achat {}
 	
+	public class Suivi extends Common{}
+	
 }

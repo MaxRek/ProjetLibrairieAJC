@@ -51,7 +51,6 @@ public class AuteurRestController {
     @JsonView(Views.Common.class)
     public AuteurResponse create(@RequestBody CreateAuteurRequest dto) {
         Auteur a = new Auteur(dto.getPrenom(), dto.getNom());
-       
         a.setLivres(new ArrayList<Livre>());
         return AuteurResponse.convert(auteurService.create(a));
     }

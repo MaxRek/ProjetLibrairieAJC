@@ -70,6 +70,7 @@ public class ReviewResponse {
         resp.setReview(review.getReview());
         resp.setDateReview(review.getDateReview());
         resp.setArticle(review.getArticle());
+        resp.setClient(review.getClient());
         
         return resp;
     }
