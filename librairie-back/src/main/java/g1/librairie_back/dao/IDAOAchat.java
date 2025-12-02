@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import g1.librairie_back.model.Achat;
 @Repository
-
 public interface IDAOAchat extends JpaRepository<Achat,Integer>{
 		
 }
