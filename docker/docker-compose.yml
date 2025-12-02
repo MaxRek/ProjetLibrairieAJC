@@ -1,0 +1,26 @@
+name: bibliotek-compose
+
+services:
+  boot:
+    image: ajc/projetLibrairie:boot
+    container_name: projetlibrairie-boot
+    
+    networks:
+      - librairie-network
+
+  angular:
+    image: ajc/projetLibrairie:angular
+    container_name: projetlibrairie-angular
+
+    ports:
+      - 80:80
+
+    depends_on:
+      - boot
+
+    networks:
+      - librairie-network
+
+networks:
+  librairie-network:
+    name: librairie-network

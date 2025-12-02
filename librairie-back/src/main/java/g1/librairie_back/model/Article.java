@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import g1.librairie_back.view.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
@@ -39,6 +40,7 @@ public abstract class Article {
 	@JsonView(Views.Common.class)
 	protected int stock;
 
+	/*
 	@OneToMany(mappedBy = "article")
 	@JsonView(Views.ArticleWithSuivis.class)
 	protected List<Suivi> suivis = new ArrayList<>();
@@ -54,6 +56,7 @@ public abstract class Article {
 	@OneToMany(mappedBy = "article")
 	@JsonView(Views.ArticleWithPaniers.class)
 	protected List<Panier> paniers = new ArrayList<>();
+	*/
 
 	public Article() {}
 
@@ -93,38 +96,6 @@ public abstract class Article {
 
 	public void setStock(int stock) {
 		this.stock = stock;
-	}
-
-	public List<Suivi> getSuivis() {
-		return suivis;
-	}
-
-	public void setSuivis(List<Suivi> suivis) {
-		this.suivis = suivis;
-	}
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-	public List<Achat> getAchats() {
-		return achats;
-	}
-
-	public void setAchats(List<Achat> achats) {
-		this.achats = achats;
-	}
-
-	public List<Panier> getPaniers() {
-		return paniers;
-	}
-
-	public void setPaniers(List<Panier> paniers) {
-		this.paniers = paniers;
 	}
 
 }
