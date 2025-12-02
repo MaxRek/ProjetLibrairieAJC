@@ -1,17 +1,14 @@
 package g1.librairie_back.dto.request;
 
-import g1.librairie_back.model.Article;
-import g1.librairie_back.model.Client;
-
 public class CreatePanierRequest {
 	
 	private Integer id;
 	
 	private int quantite;
 	
-	private Client client;
+	private Integer clientId;
 	
-	private Article article;
+	private Integer articleId;
 
 	public Integer getId() {
 		return id;
@@ -29,22 +26,20 @@ public class CreatePanierRequest {
 		this.quantite = quantite;
 	}
 
-	public Client getClient() {
-		return client;
+	public Integer getClientId() {
+		return clientId;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClientId(Integer client) {
+		this.clientId = client;
 	}
 
-	public Article getArticle() {
-		return article;
+	public Integer getArticleId() {
+		return articleId;
 	}
 
-	public void setArticle(Article article) {
-		this.article = article;
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
 	}
-	
-	
 	
 }

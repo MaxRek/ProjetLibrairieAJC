@@ -21,7 +21,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import g1.librairie_back.dto.request.CreatePanierRequest;
 import g1.librairie_back.dto.response.PanierResponse;
+import g1.librairie_back.model.Article;
+import g1.librairie_back.model.Client;
 import g1.librairie_back.model.Panier;
+import g1.librairie_back.service.ArticleService;
+import g1.librairie_back.service.CompteService;
 import g1.librairie_back.service.PanierService;
 import g1.librairie_back.view.Views;
 import jakarta.validation.Valid;
@@ -34,6 +38,12 @@ public class PanierRestController {
 
 	@Autowired
 	PanierService panierSrv;
+	
+	@Autowired
+	ArticleService articleSrv;
+	
+	@Autowired
+	CompteService compteSrv;
 
 	@JsonView(Views.Panier.class)
 	@GetMapping
@@ -63,9 +73,19 @@ public class PanierRestController {
 	public Integer ajoutPanier(@Valid @RequestBody CreatePanierRequest request) {
 		log.info("POST /api/Panier - ajoutPanier() called with request: {}", request);
 
+		Article article = articleSrv.getById(request.getArticleId());
+	    if(article == null) {
+	        throw new RuntimeException("Article introuvable");
+	    }
+	    Client client = compteSrv.getClientById(request.getClientId());
+	    if(client == null) {
+	        throw new RuntimeException("Client introuvable");
+	    }
+	    
 		Panier panier = new Panier();
 		BeanUtils.copyProperties(request, panier);
-
+		panier.setArticle(article);
+		panier.setClient(client);
 		panierSrv.create(panier);
 
 		log.info("POST /api/Panier - ajoutPanier() created Panier with id: {}", panier.getId());

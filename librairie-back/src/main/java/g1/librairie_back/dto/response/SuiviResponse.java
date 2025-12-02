@@ -6,8 +6,8 @@ import g1.librairie_back.model.Suivi;
 
 public class SuiviResponse {
 	private Integer id;
-	private Client client;
-	private Article article;
+	private Integer clientId;
+	private Integer articleId;
 
 	public Integer getId() {
 		return id;
@@ -17,28 +17,30 @@ public class SuiviResponse {
 		this.id = id;
 	}
 
-	public Client getClient() {
-		return client;
+	
+
+	public Integer getClientId() {
+		return clientId;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
 	}
 
-	public Article getArticle() {
-		return article;
+	public Integer getArticleId() {
+		return articleId;
 	}
 
-	public void setArticle(Article article) {
-		this.article = article;
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
 	}
 
 	public static SuiviResponse convert(Suivi suivi) {
 		SuiviResponse resp = new SuiviResponse();
         
         resp.setId(suivi.getId());
-        resp.setArticle(suivi.getArticle());
-        resp.setClient(suivi.getClient());
+        resp.setArticleId(suivi.getArticle().getId());
+        resp.setClientId(suivi.getClient().getId());
         
         return resp;
     }

@@ -1,5 +1,6 @@
 package g1.librairie_back.rest;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,7 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import g1.librairie_back.dto.request.CreateReviewRequest;
+import g1.librairie_back.model.Article;
+import g1.librairie_back.model.Client;
 import g1.librairie_back.model.Review;
+import g1.librairie_back.service.ArticleService;
+import g1.librairie_back.service.CompteService;
 import g1.librairie_back.service.ReviewService;
 import g1.librairie_back.view.Views;
 import jakarta.validation.Valid;
@@ -32,6 +37,12 @@ public class ReviewRestController {
 
 	@Autowired
 	ReviewService reviewSrv;
+	
+	@Autowired
+	ArticleService articleSrv;
+	
+	@Autowired
+	CompteService compteSrv;
 
 	@JsonView(Views.Review.class)
 	@GetMapping
@@ -64,14 +75,23 @@ public class ReviewRestController {
 	public Integer ajoutReview(@Valid @RequestBody CreateReviewRequest request) {
 		log.info("POST /api/Review - ajoutReview() called with request: {}", request);
 
-		Review review = new Review();
+		Article article = articleSrv.getById(request.getArticleId());
+	    if(article == null) {
+	        throw new RuntimeException("Article introuvable");
+	    }
+	    Client client = compteSrv.getClientById(request.getClientId());
+	    if(client == null) {
+	        throw new RuntimeException("Client introuvable");
+	    }
+
+	    Review review = new Review();
 		BeanUtils.copyProperties(request, review);
+	    review.setClient(client);
+	    review.setArticle(article);
+	    reviewSrv.create(review);
 
-		reviewSrv.create(review);
-
-		log.info("POST /api/Review - ajoutReview() created review with id: {}", review.getId());
-
-		return review.getId();
+	    log.info("POST /api/Review - ajoutReview() created review with id: {}", review.getId());
+	    return review.getId();
 	}
 
 

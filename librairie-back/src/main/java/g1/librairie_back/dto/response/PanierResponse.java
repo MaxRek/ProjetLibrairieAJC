@@ -9,9 +9,9 @@ private Integer id;
 	
 	private int quantite;
 	
-	private Client client;
+	private Integer clientId;
 	
-	private Article article;
+	private Integer articleId;
 
 	public Integer getId() {
 		return id;
@@ -29,29 +29,31 @@ private Integer id;
 		this.quantite = quantite;
 	}
 
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public Article getArticle() {
-		return article;
-	}
-
-	public void setArticle(Article article) {
-		this.article = article;
-	}
 	
+	
+
+	public Integer getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
+	}
+
+	public Integer getArticleId() {
+		return articleId;
+	}
+
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
+	}
 
 	public static PanierResponse convert(Panier panier) {
 		PanierResponse resp = new PanierResponse();
         
         resp.setId(panier.getId());
-        resp.setArticle(panier.getArticle());
-        resp.setClient(panier.getClient());
+        resp.setArticleId(panier.getArticle().getId());
+        resp.setClientId(panier.getClient().getId());
         resp.setQuantite(panier.getQuantite());
         
         return resp;

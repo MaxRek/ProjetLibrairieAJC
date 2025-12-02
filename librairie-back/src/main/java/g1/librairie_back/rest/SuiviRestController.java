@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import g1.librairie_back.dto.request.CreateSuiviRequest;
+import g1.librairie_back.model.Article;
+import g1.librairie_back.model.Client;
 import g1.librairie_back.model.Suivi;
+import g1.librairie_back.service.ArticleService;
+import g1.librairie_back.service.CompteService;
 import g1.librairie_back.service.SuiviService;
 import g1.librairie_back.view.Views;
 import jakarta.validation.Valid;
@@ -33,6 +37,12 @@ public class SuiviRestController {
 
 	@Autowired
 	SuiviService suiviSrv;
+	
+	@Autowired
+	ArticleService articleSrv;
+	
+	@Autowired
+	CompteService compteSrv;
 
 	@JsonView(Views.Suivi.class)
 	@GetMapping
@@ -64,10 +74,18 @@ public class SuiviRestController {
 	@PostMapping
 	public Integer ajoutSuivi(@Valid @RequestBody CreateSuiviRequest request) {
 		log.info("POST /api/suivi - ajoutSuivi() called with request: {}", request);
-
+		Article article = articleSrv.getById(request.getArticleId());
+	    if(article == null) {
+	        throw new RuntimeException("Article introuvable");
+	    }
+	    Client client = compteSrv.getClientById(request.getClientId());
+	    if(client == null) {
+	        throw new RuntimeException("Client introuvable");
+	    }
 		Suivi suivi = new Suivi();
 		BeanUtils.copyProperties(request, suivi);
-
+		suivi.setArticle(article);
+		suivi.setClient(client);
 		suiviSrv.create(suivi);
 
 		log.info("POST /api/Suivi - ajoutSuivi() created suivi with id: {}", suivi.getId());

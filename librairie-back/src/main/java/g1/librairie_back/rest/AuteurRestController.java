@@ -21,6 +21,7 @@ import g1.librairie_back.dto.request.CreateAuteurRequest;
 import g1.librairie_back.dto.response.AuteurResponse;
 import g1.librairie_back.model.Auteur;
 import g1.librairie_back.model.Livre;
+import g1.librairie_back.model.Suivi;
 import g1.librairie_back.service.AuteurService;
 import g1.librairie_back.view.Views;
 
@@ -34,10 +35,11 @@ public class AuteurRestController {
 
     @GetMapping
     @JsonView(Views.Common.class)
-    public List<AuteurResponse> getAll() {
-        return auteurService.getAll().stream()
-                .map(AuteurResponse::convert)
-                .collect(Collectors.toList());
+    public List<Auteur> getAll() {
+       
+		List<Auteur> auteurs = auteurService.getAll();
+		return auteurs;
+
     }
 
     @GetMapping("/{id}")

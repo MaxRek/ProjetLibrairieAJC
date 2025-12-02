@@ -1,15 +1,12 @@
 package g1.librairie_back.dto.request;
 
-import g1.librairie_back.model.Article;
-import g1.librairie_back.model.Client;
-
 public class CreateSuiviRequest {
 	
     private Integer id;
 	
-	private Article article;
+	private Integer articleId;
 	
-	private Client client;
+	private Integer clientId;
 
 	public Integer getId() {
 		return id;
@@ -19,19 +16,23 @@ public class CreateSuiviRequest {
 		this.id = id;
 	}
 
-	public Article getArticle() {
-		return article;
+		
+
+	public Integer getArticleId() {
+		return articleId;
 	}
 
-	public void setArticle(Article article) {
-		this.article = article;
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
 	}
 
-	public Client getClient() {
-		return client;
+	public Integer getClientId() {
+		return clientId;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
 	}
+
+	
 }
