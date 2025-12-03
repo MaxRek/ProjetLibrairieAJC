@@ -6,11 +6,8 @@ import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
 
 import { PapeterieDto } from '../../../dto/papeterie-dto';
-
 import { PapeterieService } from '../../../service/papeterie-service';
 
-import { ArticleDto } from '../../../dto/article-dto';
-import { ArticleService } from '../../../service/article-service';
 
 @Component({
   selector: 'papeterie',

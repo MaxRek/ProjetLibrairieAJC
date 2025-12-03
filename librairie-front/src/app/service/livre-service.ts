@@ -30,13 +30,14 @@ export class LivreService {
     return this.http.get<LivreDto>(`${this.apiUrl}/${id}`);
   }
 
-  public save(livreDto: LivreDto): Observable<void> {
+  public save(livreDto: LivreDto): void {
     const payload = livreDto.toJson();
 
     if (!livreDto.id) {
-      return this.http.post<void>(this.apiUrl, payload);
+      this.http.post<void>(this.apiUrl, payload).subscribe(() => this.refresh());
+      return ;
     }
-    return this.http.put<void>(`${this.apiUrl}/${livreDto.id}`, payload);
+    this.http.put<void>(`${this.apiUrl}/${livreDto.id}`, payload).subscribe(() => this.refresh());
   }
 
   public deleteById(id: number): void {
