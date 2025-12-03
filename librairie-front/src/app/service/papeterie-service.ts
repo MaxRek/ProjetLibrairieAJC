@@ -8,7 +8,7 @@ import { PapeterieDto } from '../dto/papeterie-dto';
   providedIn: 'root',
 })
 export class PapeterieService {
-  private apiUrl = '/papeterie';
+  private apiUrl = 'http://localhost:8080/api/papeterie';
   private refresh$: Subject<void> = new Subject<void>();
 
   constructor(private http: HttpClient) { }
