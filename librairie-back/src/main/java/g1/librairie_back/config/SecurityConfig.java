@@ -20,13 +20,13 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // Configurer ici les accès généraux
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers("/api/compte").permitAll();
+            /*auth.requestMatchers("/api/compte*").permitAll();
             auth.requestMatchers("/api/matiere").hasRole("USER");
-            auth.requestMatchers("/api/client").hasRole("ADMIN");
+            auth.requestMatchers("/api/client").hasRole("ADMIN");*/
 
             // auth.requestMatchers("/api/matiere").hasAuthority("ROLE_USER");
 
-            auth.requestMatchers("/**").authenticated();
+            auth.requestMatchers("/**").permitAll();
         });
 
         // Activer le formulaire de connexion
