@@ -18,7 +18,7 @@ public class Suivi {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@JsonView(Views.Common.class)
-	private int id;
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="client",nullable = false)
@@ -30,18 +30,18 @@ public class Suivi {
 	
 	public Suivi() {}
 
-	public Suivi(int id, Client client, Article article) {
+	public Suivi(Integer id, Client client, Article article) {
 		super();
 		this.id = id;
 		this.client = client;
 		this.article = article;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
