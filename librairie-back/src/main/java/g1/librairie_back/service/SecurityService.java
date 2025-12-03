@@ -24,12 +24,12 @@ public class SecurityService {
 
     public AuthCompteResponse auth(AuthCompteRequest authRequest) {
         try {
-            log.debug("Trying to authenticate ...");
+            log.info("Trying to authenticate ...");
 
             Authentication authentication = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            log.debug("Successfuly authenticated!" + authentication.getAuthorities());
+            log.info("Successfuly authenticated!" + authentication.getAuthorities());
 
             return new AuthCompteResponse(true, JwtUtil.generate(authentication));
         }
