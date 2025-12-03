@@ -6,12 +6,13 @@ import { Observable } from 'rxjs';
 import { LivreDto } from '../../../dto/livre-dto';
 import { LivreService } from '../../../service/livre-service';
 
+import { RouterModule } from '@angular/router';
 import { ArticleDto } from '../../../dto/article-dto';
 import { ArticleService } from '../../../service/article-service';
 
 @Component({
   selector: 'livre',
-  imports: [ CommonModule,  ReactiveFormsModule],
+  imports: [ CommonModule,  ReactiveFormsModule,RouterModule],
   templateUrl: './livre.html',
   styleUrl: '../admin.css',
 })

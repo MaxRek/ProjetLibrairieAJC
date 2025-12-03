@@ -11,9 +11,10 @@ import { CompteDto } from '../../../dto/compte-dto';
 import { CompteService } from '../../../service/compte-service';
 
 
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'client',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,RouterModule],
   templateUrl: './client.html',
   styleUrl: '../admin.css',
 })

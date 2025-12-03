@@ -6,9 +6,10 @@ import { Observable } from 'rxjs';
 import { CompteDto } from '../../../dto/compte-dto';
 import { CompteService } from '../../../service/compte-service';
 
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'compte',
-  imports: [ CommonModule,  ReactiveFormsModule],
+  imports: [ CommonModule,  ReactiveFormsModule,RouterModule],
   templateUrl: './compte.html',
   styleUrl: '../admin.css',
 })

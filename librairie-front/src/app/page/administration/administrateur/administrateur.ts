@@ -10,10 +10,11 @@ import { AdministrateurService } from '../../../service/administrateur-service';
 import { CompteDto } from '../../../dto/compte-dto';
 import { CompteService } from '../../../service/compte-service';
 
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'administrateur',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,RouterModule],
   templateUrl: './administrateur.html',
   styleUrl: '../admin.css',
 })
