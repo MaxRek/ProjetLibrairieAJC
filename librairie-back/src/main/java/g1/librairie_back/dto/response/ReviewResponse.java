@@ -2,11 +2,6 @@ package g1.librairie_back.dto.response;
 
 import java.time.LocalDate;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import g1.librairie_back.dao.IDAOCompte;
-import g1.librairie_back.model.Article;
-import g1.librairie_back.model.Client;
 import g1.librairie_back.model.Review;
 
 public class ReviewResponse {

@@ -9,7 +9,6 @@ import g1.librairie_back.view.Views;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("Client")
@@ -17,8 +16,8 @@ public class Client extends Compte{
 
 
 	@JsonView(Views.Client.class)
-	@OneToOne(mappedBy="client")
-	protected Panier panier;
+	@OneToMany(mappedBy="client")
+	protected List<Panier> panier = new ArrayList();
 	
 	@JsonView(Views.ClientWithSuivi.class)
 	@OneToMany(mappedBy = "client")
@@ -39,10 +38,13 @@ public class Client extends Compte{
 		super(nom, prenom, email, password);
 	}
 
-	public Panier getPanier() {
+	
+
+	public List<Panier> getPanier() {
 		return panier;
 	}
-	public void setPanier(Panier panier) {
+
+	public void setPanier(List<Panier> panier) {
 		this.panier = panier;
 	}
 

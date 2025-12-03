@@ -45,4 +45,16 @@ public class PanierService {
     public void deleteById(Integer id) {
         daoPanier.deleteById(id);
     }
+    
+    public List<Panier> getPanierByIdClient(Integer id){
+    	
+    	List<Panier> panier = daoPanier.findByClientId(id);
+    	return panier;
+    }
+    
+  public void deletePanierByIdClient(Integer id){
+    	
+	  	daoPanier.deleteByClientId(id);
+  }
+    
 }
