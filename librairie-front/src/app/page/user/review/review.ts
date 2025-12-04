@@ -16,72 +16,17 @@ import { AuthService } from '../../../service/auth-service';
 export class ReviewUser implements OnInit {
   protected review$!: Observable<ReviewDto[]>;
 
-  // Je mets un id pour l'instant mais après on devra réccupérer un vrai id grace au login
-  private clientId = 1;
-
-  protected showForm: boolean = false;
-
-  protected reviewForm!: FormGroup
-  
-  protected noteCtrl!: FormControl;
-  protected reviewCtrl!: FormControl;
-
-  protected editingReview!: ReviewDto | null;
-
-  constructor(private reviewService: ReviewService, private formBuilder: FormBuilder, private authService: AuthService) { }
-
+  constructor(
+    private reviewService: ReviewService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.clientId = parseInt(this.authService.idClient);
-    this.review$ = this.reviewService.findByClient(this.clientId);
-    
-    this.noteCtrl = this.formBuilder.control(0);
-    this.reviewCtrl = this.formBuilder.control('');
-
-    this.reviewForm = this.formBuilder.group({
-      note: this.noteCtrl,
-      review: this.reviewCtrl,
-    });
+    const clientId = Number(this.authService.idClient);
+    this.review$ = this.reviewService.findByClient(clientId);
   }
 
   public trackReview(index: number, value: ReviewDto) {
     return value.id;
   }
-
-  public valider(): void {
-    if (!this.editingReview) return;
-
-    const dto = new ReviewDto(
-      0,
-      this.reviewCtrl.value,
-      this.noteCtrl.value,
-      this.editingReview.dateReview,
-      this.editingReview.articleId,
-      this.clientId
-    );
-    this.reviewService.save(dto);
-    this.showForm = false;
-    this.editingReview = null;
-    this.reviewForm.reset();
-  }
-
-  public editer(review: ReviewDto): void {
-  this.editingReview = review;
-
-  this.noteCtrl.setValue(review.note);
-  this.reviewCtrl.setValue(review.review);
-
-  this.showForm = true;
-  }
-
-  public annuler(): void {
-    this.showForm = false;
-    this.editingReview = null;
-    this.reviewForm.reset();
-  }
-
-  public supprimer (review: ReviewDto) {
-    this.reviewService.deleteById(review.id);
-  }
-
 }

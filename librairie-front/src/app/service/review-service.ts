@@ -9,7 +9,7 @@ import { ReviewDto } from '../dto/review-dto';
   providedIn: 'root',
 })
 export class ReviewService {
-  private apiUrl = '/api/review';
+  private apiUrl = '/review';
   private refresh$: Subject<void> = new Subject<void>();
   
 
