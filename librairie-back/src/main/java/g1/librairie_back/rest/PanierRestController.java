@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import g1.librairie_back.dto.request.CreatePanierRequest;
-import g1.librairie_back.dto.response.PanierResponse;
 import g1.librairie_back.model.Article;
 import g1.librairie_back.model.Client;
 import g1.librairie_back.model.Panier;
@@ -32,7 +31,6 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/panier")
-@CrossOrigin("*")
 public class PanierRestController {
 	private static final Logger log = LoggerFactory.getLogger(PanierRestController.class);
 
