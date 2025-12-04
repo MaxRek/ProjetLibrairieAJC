@@ -15,7 +15,9 @@
                 <tr>
                     <th>Date</th>
                     <th>Article</th>
+                    <th>Article Libelle</th>
                     <th>Client</th>
+                    <th>Client Nom</th>
                     <th>Quantité</th>
                     <th>Prix</th>
                     <th></th>
@@ -24,8 +26,10 @@
             <tbody>
                 <tr *ngFor="let achat of achat$ | async; traclBy: trackAchat" >
                     <td>{{ achat.dateAchat }}</td>
-                    <td>{{ achat.articleId }}</td>
-                    <td>{{ achat.clientId }}</td>
+                    <td>{{ achat.article?.id }}</td>
+                    <td>{{ achat.article?.libelle }}</td>
+                    <td>{{ achat.client?.id }}</td>
+                    <td>{{ achat.client?.nom }}</td>
                     <td>{{ achat.quantiteAchat }}</td>
                     <td>{{ achat.prix }}</td>
                     <td>

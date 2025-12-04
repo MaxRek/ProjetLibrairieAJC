@@ -14,14 +14,18 @@
             <thead>
                 <tr>
                     <th>Article</th>
+                    <th>Article Libelle</th>
                     <th>Client</th>
+                    <th>Client Nom</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let suivi of suivi$ | async; trackBy: trackSuivi" >
-                    <td>{{ suivi.articleId }}</td>
-                    <td>{{ suivi.clientId }}</td>
+                    <td>{{ suivi.article?.id }}</td>
+                    <td>{{ suivi.article?.libelle }}</td>
+                    <td>{{ suivi.client?.id }}</td>
+                    <td>{{ suivi.client?.nom }}</td>
                     <td>
                         <button (click)="editer(suivi)">Modifier</button>
                         <button (click)="supprimer(suivi)">Supprimer</button>
