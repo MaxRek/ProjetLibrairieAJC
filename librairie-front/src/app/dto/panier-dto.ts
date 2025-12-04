@@ -53,7 +53,6 @@ export class PanierDto {
 
     public toJson(): any {
         return {
-            id: this.id,
             quantite: this.quantite,
             articleId: this.articleId,
             clientId: this.clientId

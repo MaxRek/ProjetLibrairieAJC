@@ -78,8 +78,8 @@ export class Achat implements OnInit {
       this.achatService.save(
         new AchatDto(
           this.editingAchat.id, 
-          this.dateAchatCtrl.value, 
           this.prixCtrl.value, 
+          this.dateAchatCtrl.value, 
           this.quantiteAchatCtrl.value,
           this.articleIdCtrl.value,
           this.clientIdCtrl.value
@@ -89,8 +89,8 @@ export class Achat implements OnInit {
       this.achatService.save(
         new AchatDto(
           0, 
-          this.dateAchatCtrl.value, 
           this.prixCtrl.value, 
+          this.dateAchatCtrl.value, 
           this.quantiteAchatCtrl.value,
           this.articleIdCtrl.value,
           this.clientIdCtrl.value
@@ -101,14 +101,10 @@ export class Achat implements OnInit {
     this.achatForm.reset();
   }
 
-  public editer (achat: AchatDto) {
-    this.editingAchat = achat;
-    this.dateAchatCtrl.setValue(achat.dateAchat);
-    this.prixCtrl.setValue(achat.prix);
-    this.quantiteAchatCtrl.setValue(achat.quantiteAchat);
-    this.articleIdCtrl.setValue(achat.articleId);
-    this.clientIdCtrl.setValue(achat.clientId);
-    this.showForm = true;
+    public annulerEditer() {
+    this.editingAchat = null;
+    this.showForm = false;
+    this.achatForm.reset();
   }
 
   public supprimer (achat: AchatDto) {

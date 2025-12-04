@@ -71,7 +71,6 @@ export class ReviewDto {
 
     public toJson(): any {
         return {
-            id: this.id,
             review: this.review,
             note: this.note,
             dateReview: this.dateReview,

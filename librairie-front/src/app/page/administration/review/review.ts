@@ -99,14 +99,10 @@ export class Review implements OnInit {
     this.reviewForm.reset();
   }
 
-  public editer (review: ReviewDto) {
-    this.editingReview = review;
-    this.dateReviewCtrl.setValue(review.dateReview);
-    this.noteCtrl.setValue(review.note);
-    this.reviewCtrl.setValue(review.review);
-    this.articleIdCtrl.setValue(review.articleId);
-    this.clientIdCtrl.setValue(review.clientId);
-    this.showForm = true;
+    public annulerEditer() {
+    this.editingReview = null;
+    this.showForm = false;
+    this.reviewForm.reset();
   }
 
   public supprimer (review: ReviewDto) {

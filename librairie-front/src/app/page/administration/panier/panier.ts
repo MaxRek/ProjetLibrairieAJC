@@ -94,9 +94,15 @@ export class Panier implements OnInit {
   public editer (panier: PanierDto) {
     this.editingPanier = panier;
     this.quantiteCtrl.setValue(panier.quantite);
-    this.articleIdCtrl.setValue(panier.articleId);
-    this.clientIdCtrl.setValue(panier.clientId);
+    this.articleIdCtrl.setValue(panier.article?.id);
+    this.clientIdCtrl.setValue(panier.client?.id);
     this.showForm = true;
+  }
+
+  public annulerEditer() {
+    this.editingPanier = null;
+    this.showForm = false;
+    this.panierForm.reset();
   }
 
   public supprimer (panier: PanierDto) {

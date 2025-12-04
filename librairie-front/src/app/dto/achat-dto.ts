@@ -73,7 +73,6 @@ export class AchatDto {
 
     public toJson(): any {
         return {
-            id: this.id,
             prix: this.prix,
             dateAchat: this.dateAchat,
             quantiteAchat: this.quantiteAchat,

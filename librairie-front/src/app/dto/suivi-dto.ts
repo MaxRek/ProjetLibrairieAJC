@@ -44,7 +44,6 @@ export class SuiviDto {
 
     public toJson(): any {
         return {
-            id: this.id,
             articleId: this.articleId,
             clientId: this.clientId
         };

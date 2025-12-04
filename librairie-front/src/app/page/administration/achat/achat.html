@@ -31,9 +31,8 @@
                     <td>{{ achat.client?.id }}</td>
                     <td>{{ achat.client?.nom }}</td>
                     <td>{{ achat.quantiteAchat }}</td>
-                    <td>{{ achat.prix }}</td>
+                    <td>{{ achat.prix }} €</td>
                     <td>
-                        <button (click)="editer(achat)">Modifier</button>
                         <button (click)="supprimer(achat)">Supprimer</button>
                     </td>
                 </tr>
@@ -97,7 +96,7 @@
             <br/>
 
             <button type="submit">Enregistrer</button>
-            <button type="button" (click)="showForm = false">Annuler</button>
+            <button type="button" (click)="annulerEditer()">Annuler</button>
 
         </form>
     </section>

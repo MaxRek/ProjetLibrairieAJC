@@ -84,11 +84,10 @@ export class Suivi implements OnInit {
     this.suiviForm.reset();
   }
 
-  public editer (suivi: SuiviDto) {
-    this.editingSuivi = suivi;
-    this.articleIdCtrl.setValue(suivi.articleId);
-    this.clientIdCtrl.setValue(suivi.clientId);
-    this.showForm = true;
+  public annulerEditer() {
+    this.editingSuivi = null;
+    this.showForm = false;
+    this.suiviForm.reset();
   }
 
   public supprimer (suivi: SuiviDto) {
