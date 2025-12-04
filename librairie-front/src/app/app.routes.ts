@@ -21,7 +21,6 @@ import { AuthClientGuard } from './guard/auth-client-guard';
 export const routes: Routes = [
     { path: 'auteur', component: Auteur, canActivate: [AuthAdminGuard] },
     { path: 'livre', component: Livre, canActivate: [AuthAdminGuard] },
-    { path: 'genre', component: Genre, canActivate: [AuthAdminGuard] },
     { path: 'papeterie', component: Papeterie, canActivate: [AuthAdminGuard] },
     { path: 'home', component: Home},
     { path: 'catalogue', component: Catalogue },
