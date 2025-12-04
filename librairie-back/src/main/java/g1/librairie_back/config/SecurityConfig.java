@@ -4,67 +4,77 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class SecurityConfig {
     
     // Le SecurityFilterChain va nous permettre de configurer les accès, éventuellement le CSRF, politiques CORS générales, etc.
     @Bean // On bypass la config auto-configuration
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http, JwtHeaderFilter jwtFilter) throws Exception {
         // Configurer ici les accès généraux
         http.authorizeHttpRequests(auth -> {
-            /*auth.requestMatchers("/api/compte*").permitAll();
-            auth.requestMatchers("/api/matiere").hasRole("USER");
-            auth.requestMatchers("/api/client").hasRole("ADMIN");*/
-
-            // auth.requestMatchers("/api/matiere").hasAuthority("ROLE_USER");
-
-            auth.requestMatchers("/**").permitAll();
+            auth.requestMatchers("/api/compte/**").permitAll();
+            auth.requestMatchers("/api/papeterie/**").permitAll();
+            auth.requestMatchers("/api/livre/**").permitAll();
+            auth.requestMatchers("/api/client/**").permitAll();
+            auth.requestMatchers("/api/auteur/**").permitAll();
+            auth.requestMatchers("/api/achat/**").permitAll();
+            auth.requestMatchers("/api/panier/**").permitAll();
+            auth.requestMatchers("/api/suivi/**").permitAll();
+            auth.requestMatchers("/api/review/**").permitAll();
+            auth.requestMatchers("/api/admin/**").permitAll();
         });
-
-        // Activer le formulaire de connexion
-        http.formLogin(Customizer.withDefaults());
-
-        // Activer l'authentification par HTTP Basic
-        http.httpBasic(Customizer.withDefaults());
 
         // Désactiver la protection CSRF
-        http.csrf().disable();      
+        http.csrf(csrf -> csrf.disable());
+
+        //desactivation des cookies
+        http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+        // Positionner le filter JwtHeaderFilter AVANT AuthenticationFilter
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         
-        http.cors(cors -> {
-            CorsConfigurationSource source = request -> {
-                CorsConfiguration config = new CorsConfiguration();
-
-
-
-                
-                config.setAllowedHeaders(List.of("*"));                
-                config.setAllowedOrigins(List.of("http://localhost:4200"));
-                config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
-                return config;
-            };
-            cors.configurationSource(source);
-        });
+        //politique CORS
+        http.cors(Customizer.withDefaults());
 
         return http.build();
     }
 
     @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+
+        corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
+
+        corsSource.registerCorsConfiguration("/**", corsConfiguration);
+
+        return corsSource;
+    }
+
+    @Bean
     PasswordEncoder passwordEncoder() {
         // return NoOpPasswordEncoder.getInstance(); // PAS BIEN
+        return new BCryptPasswordEncoder();
+    }
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        System.out.println("\r\nMot de passe ===> " + passwordEncoder.encode("123456") + "\r\n");
-
-        return passwordEncoder;
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 }

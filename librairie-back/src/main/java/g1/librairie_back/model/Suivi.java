@@ -34,7 +34,7 @@ public class Suivi {
 	
 	public Suivi() {}
 
-	public Suivi(int id, Client client, Article article) {
+	public Suivi(Integer id, Client client, Article article) {
 		super();
 		this.id = id;
 		this.client = client;

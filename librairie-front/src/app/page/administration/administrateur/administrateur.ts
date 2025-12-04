@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { AdministrateurDto } from '../../../dto/administrateur-dto';
 import { AdministrateurService } from '../../../service/administrateur-service';
 
+import { CompteDto } from '../../../dto/compte-dto';
+
 import { RouterModule } from '@angular/router';
 
 @Component({

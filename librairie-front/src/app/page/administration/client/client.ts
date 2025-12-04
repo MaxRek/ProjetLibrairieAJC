@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { ClientDto } from '../../../dto/client-dto';
 import { ClientService } from '../../../service/client-service';
 
+import { CompteDto } from '../../../dto/compte-dto';
+
 
 import { RouterModule } from '@angular/router';
 @Component({

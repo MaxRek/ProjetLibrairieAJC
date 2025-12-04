@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,12 +78,10 @@ public class AchatRestController {
     }
     
     
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         achatSrv.deleteById(id);
     }
-    
     
     @PostMapping("/acheter/{id}")
     public void acheter(@PathVariable Integer id) {

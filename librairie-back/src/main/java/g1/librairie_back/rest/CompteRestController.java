@@ -1,36 +1,49 @@
 package g1.librairie_back.rest;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.crypto.SecretKey;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import g1.librairie_back.dao.IDAOCompte;
+import g1.librairie_back.dto.request.AuthCompteRequest;
 import g1.librairie_back.dto.request.CreateClientRequest;
+import g1.librairie_back.dto.response.AuthCompteResponse;
 import g1.librairie_back.model.Client;
 import g1.librairie_back.model.Compte;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import g1.librairie_back.service.SecurityService;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
 @RequestMapping("/api/compte")
 public class CompteRestController {
+    private final SecurityService service;
+    private final static Logger log = LoggerFactory.getLogger(SecurityService.class);
+
+
+    public CompteRestController(SecurityService service) {
+        this.service = service;
+    }
+    
     @Autowired
     private IDAOCompte dao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public Compte enregistrerCompte(@RequestBody CreateClientRequest request) {
         String encodedPassword = this.passwordEncoder.encode(request.getPassword());
@@ -45,18 +58,10 @@ public class CompteRestController {
         return client;
     }
     
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/connexion")
-    public String connexion() {
-        Date now = new Date(0);
-        String key = "6E5A7234753778214125442A472D4B6150645367556B58703273357638792F42";
-        SecretKey secretKey = Keys.hmacShaKeyFor(key.getBytes());
-
-        return Jwts.builder()
-            .subject("nom utilisateur") // Souvent, c'est le username ici
-            .issuedAt(now)
-            .expiration(new Date(now.getTime() + 300_000)) // Durée de validité = 5 mins
-            .signWith(secretKey)
-            .compact() // Le jeton JWT sous forme de String
-        ;
+    public AuthCompteResponse connexion(@RequestBody AuthCompteRequest request ){
+        log.info("Tentative de connection");
+        return this.service.auth(request);
     }
 }

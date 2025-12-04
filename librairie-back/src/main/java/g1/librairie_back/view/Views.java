@@ -41,12 +41,12 @@ public class Common {}
 	public class ReviewWithArticle extends Review {}
 
 	public class Achat extends Common {}
+	
 	public class Panier extends Common {}
 	
 	public class AchatWithClient extends Achat {}
 	
 	public class AchatWithArticle extends Achat {}
-	
-	public class Suivi extends Common{}
-	
+
+	public class Suivi extends Common {}
 }
