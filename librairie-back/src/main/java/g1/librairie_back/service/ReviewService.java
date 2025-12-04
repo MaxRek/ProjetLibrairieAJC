@@ -37,6 +37,11 @@ public class ReviewService {
 		return daoReview.save(review);
 	}
 
+	public List<Review> getByClient(Integer clientId) {
+    return daoReview.findByClientId(clientId);
+	}
+
+
 	public void deleteById(Integer id)
 	{
 		daoReview.deleteById(id);

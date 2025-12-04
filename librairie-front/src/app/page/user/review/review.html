@@ -21,14 +21,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let review of review$ | async; traclBy: trackReview" >
+                <tr *ngFor="let review of review$ | async; trackBy: trackReview" >
                     <td>{{ review.dateReview }}</td>
                     <td>{{ review.articleId }}</td>
                     <td>{{ review.note }}</td>
                     <td>{{ review.review }}</td>
                     <td>
                         <button (click)="editer(review)">Modifier</button>
-                        <button (click)="supprimer(review)">Supprimer</button>
                     </td>
                 </tr>
             </tbody>

@@ -35,8 +35,8 @@ export class ReviewUser implements OnInit {
     this.clientId = parseInt(this.authService.idClient);
     this.review$ = this.reviewService.findByClient(this.clientId);
     
-    this.noteCtrl = this.formBuilder.control('');
-    this.reviewCtrl = this.formBuilder.control(0);
+    this.noteCtrl = this.formBuilder.control(0);
+    this.reviewCtrl = this.formBuilder.control('');
 
     this.reviewForm = this.formBuilder.group({
       note: this.noteCtrl,
@@ -48,18 +48,11 @@ export class ReviewUser implements OnInit {
     return value.id;
   }
 
-  public editer (review: ReviewDto) {
-    this.editingReview = review;
-    this.noteCtrl.setValue(review.note);
-    this.reviewCtrl.setValue(review.review);
-    this.showForm = true;
-  }
-
   public valider(): void {
     if (!this.editingReview) return;
 
     const dto = new ReviewDto(
-      this.editingReview.id,
+      0,
       this.reviewCtrl.value,
       this.noteCtrl.value,
       this.editingReview.dateReview,
@@ -70,6 +63,15 @@ export class ReviewUser implements OnInit {
     this.showForm = false;
     this.editingReview = null;
     this.reviewForm.reset();
+  }
+
+  public editer(review: ReviewDto): void {
+  this.editingReview = review;
+
+  this.noteCtrl.setValue(review.note);
+  this.reviewCtrl.setValue(review.review);
+
+  this.showForm = true;
   }
 
   public annuler(): void {

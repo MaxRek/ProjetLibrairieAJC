@@ -1,6 +1,5 @@
 package g1.librairie_back.rest;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import g1.librairie_back.dto.request.CreateReviewRequest;
+import g1.librairie_back.dto.response.ReviewResponse;
 import g1.librairie_back.model.Article;
 import g1.librairie_back.model.Client;
 import g1.librairie_back.model.Review;
@@ -92,6 +92,17 @@ public class ReviewRestController {
 
 	    log.info("POST /api/Review - ajoutReview() created review with id: {}", review.getId());
 	    return review.getId();
+	}
+
+	@JsonView(Views.Review.class)
+	@GetMapping("/client/{idClient}")
+	public List<ReviewResponse> getReviewsByClient(@PathVariable Integer idClient) {
+
+		List<Review> reviews = reviewSrv.getByClient(idClient);
+
+		return reviews.stream()
+				.map(review -> ReviewResponse.convert(review))
+				.toList();
 	}
 
 
