@@ -18,9 +18,11 @@ import { AchatUser } from './page/user/achat/achat';
 import { SuiviUser } from './page/user/suivi/suivi';
 import { ReviewUser } from './page/user/review/review';
 import { LoginPage } from './page/user/login/login';
+import { AuthAdminGuard } from './guard/auth-admin-guard';
+import { AuthClientGuard } from './guard/auth-client-guard';
 
 export const routes: Routes = [
-    { path: 'auteur', component: Auteur },
+    { path: 'auteur', component: Auteur, canActivate: [AuthAdminGuard] },
     { path: 'livre', component: Livre },
     { path: 'genre', component: Genre },
     { path: 'papeterie', component: Papeterie },
@@ -31,7 +33,7 @@ export const routes: Routes = [
     { path: 'client', component: Client },
     { path: 'administrateur', component: Administrateur },
     { path: 'achat', component: Achat },
-    { path: 'suivi', component: Suivi },
+    { path: 'suivi', component: Suivi, canActivate: [AuthClientGuard] },
     { path: 'panier', component: Panier },
     { path: 'review', component: Review },
     { path: 'user/panier', component: PanierUser },

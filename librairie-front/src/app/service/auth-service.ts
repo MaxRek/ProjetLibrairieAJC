@@ -21,6 +21,15 @@ export class AuthService {
     public get token(): string {
       return this._token;
     }
+
+    public get role() : string {
+      return this._role; 
+    }
+
+    public get idClient() : string {
+      return this._idClient;
+    }
+    
   
     public auth(authRequest: AuthRequestDto): Promise<void> {
       return new Promise((resolve, reject) => {

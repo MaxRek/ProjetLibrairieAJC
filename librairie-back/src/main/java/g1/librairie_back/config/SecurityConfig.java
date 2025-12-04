@@ -29,6 +29,8 @@ public class SecurityConfig {
             auth.requestMatchers("/api/papeterie/**").permitAll();
             auth.requestMatchers("/api/livre").hasAnyRole("CLIENT","ADMIN");
             auth.requestMatchers("/api/client").hasRole("ADMIN");
+            auth.requestMatchers("/api/auteur/**").permitAll();
+            auth.requestMatchers("/api/achat/**").permitAll();
         });
 
         // Désactiver la protection CSRF
