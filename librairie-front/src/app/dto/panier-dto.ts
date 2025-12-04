@@ -43,7 +43,7 @@ export class PanierDto {
         this._clientId = value;
     }
 
-    public get ArticlePId(): number {
+    public get ArticleId(): number {
         return this.article?.id as number ?? 0;
     }
 
