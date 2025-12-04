@@ -32,7 +32,7 @@ export class PanierUser implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
-  // Récupère l'id client comme STRING depuis l'auth
+    // Récupère l'id client comme STRING depuis l'auth
     const idClientStr = this.authService.idClient;
     // je mets en number c'est mieux
     this.clientId = Number(idClientStr);
