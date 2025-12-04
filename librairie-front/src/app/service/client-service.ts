@@ -8,7 +8,7 @@ import { ClientDto } from '../dto/client-dto';
   providedIn: 'root',
 })
 export class ClientService {
-  private apiUrl = 'http://localhost:8080/api/client';
+  private apiUrl = '/client';
   private refresh$: Subject<void> = new Subject<void>();
   constructor(private http: HttpClient) {}
 
