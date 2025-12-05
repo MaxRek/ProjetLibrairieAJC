@@ -1,16 +1,11 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { ClientDto } from '../../../dto/client-dto';
 import { ClientService } from '../../../service/client-service';
-
-import { CompteDto } from '../../../dto/compte-dto';
-
-
 import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'client',
   imports: [CommonModule, ReactiveFormsModule,RouterModule],
@@ -99,3 +94,5 @@ export class Client implements OnInit {
   }
 
 }
+
+

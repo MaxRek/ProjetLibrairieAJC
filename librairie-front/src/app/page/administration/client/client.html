@@ -22,18 +22,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let client of client$ | async; trackBy: trackClient" >
-                    <td>
-                        {{ client.nom }}
-                    </td>
-                    <td>
-                        {{ client.prenom }}
-                    </td>
-                    <td>
-                        {{ client.email }}
-                    </td>
-                    <td>
-                        {{ client.password }}
-                    </td>
+                    <td>{{ client.nom }}</td>
+                    <td>{{ client.prenom }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.password }}</td>
                     <td>
                         <button (click)="editer(client)">Modifier</button>
                         <button (click)="supprimer(client)">Supprimer</button>
@@ -50,14 +42,12 @@
     <section *ngIf="showForm">
         <h2>Formulaire d'ajout</h2>
         <form (ngSubmit)="creerOuModifier()" [formGroup]="clientForm">
-
             <label for="nom">nom:</label>
             <input id="nom" formControlName="nom" type="text">
                 @if (nomCtrl.hasError('required')) {
                     <span class="error">Le nom est requis.</span>
                 }
             <br>
-
             <label for="prenom">prenom:</label>
             <input id="prenom" formControlName="prenom" type="text">
                 @if (prenomCtrl.hasError('required')) {
@@ -76,7 +66,6 @@
                     <span class="error">Le password est requis.</span>
                 }
             <br>
-
             <button type="submit">Enregistrer</button>
         </form>
     </section>

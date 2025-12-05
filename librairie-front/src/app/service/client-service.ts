@@ -42,6 +42,4 @@ export class ClientService {
     this.http.delete<void>(`${this.apiUrl}/${id}`).subscribe(() => this.refresh());
   }
 
-  
-
 }
